@@ -57,10 +57,11 @@ float getVolume ()
     [recorder updateMeters];
 
     float avg = [recorder averagePowerForChannel:0];
-    // NSLog(@"AVG %f PEAK: %f", avg, [recorder peakPowerForChannel:0]);
+    float peak = [recorder peakPowerForChannel:0];
+    // NSLog(@"AVG %f PEAK: %f", avg, peak);
     [recorder stop];
 
-    return avg;
+    return peak;
 
 }
 
