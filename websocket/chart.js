@@ -1,5 +1,18 @@
 $(function() {
 
+  var randomData = function() {
+    // generate an array of 100 data points
+    var data = [], time = (new Date()).getTime(), i;
+
+    for( i = -999; i <= 0; i++) {
+      data.push([
+        time + i * 1000,
+        0
+        ]);
+    }
+    return data;
+  }
+
 	Highcharts.setOptions({
 		global : {
 			useUTC : false
@@ -10,15 +23,7 @@ $(function() {
 	$('#container').highcharts('StockChart', {
 		chart : {
 			events : {
-				load : function() {
-          var series = this.series[0];
-          window.series = series;
-          var socket = io.connect("http://localhost:3000");
-          socket.on('data', function (data) {
-            // $('#data').append(JSON.stringify(data)).append("\n");
-            series.addPoint(data, true, true);
-          });
-        }
+				load : chartLoaded
       }
     },
 
@@ -40,7 +45,7 @@ $(function() {
 		},
 
 		title : {
-			text : 'Live random data'
+			text : 'Live office noise'
 		},
 
 		exporting: {
@@ -48,19 +53,11 @@ $(function() {
 		},
 
 		series : [{
-			name : 'Random data',
-			data : (function() {
-				// generate an array of 100 data points
-				var data = [], time = (new Date()).getTime(), i;
-
-				for( i = -999; i <= 0; i++) {
-					data.push([
-						time + i * 1000,
-            0
-					]);
-				}
-				return data;
-			}())
+			name : 'avg',
+			data : randomData()
+    }, {
+      name : 'peak',
+      data : randomData()
     }]
 	});
 
