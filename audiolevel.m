@@ -62,7 +62,7 @@ sleepABit()
 }
 
 int
-main(int argc, char const **argv)
+main(void)
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
@@ -80,6 +80,4 @@ main(int argc, char const **argv)
     }
 
     [pool release];
-
-    return 0;
 }
