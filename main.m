@@ -10,7 +10,7 @@
 #include <AudioToolbox/AudioServices.h>
 #include <AVFoundation/AVFoundation.h>
 
-float getVolume ()
+float getVolume()
 {
     NSURL *url = [NSURL fileURLWithPath:@"/tmp/audiolevel.temp"];
     NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -31,11 +31,10 @@ float getVolume ()
 
     float avg = [recorder averagePowerForChannel:0];
     float peak = [recorder peakPowerForChannel:0];
-    // NSLog(@"AVG %f PEAK: %f", avg, peak);
+
     [recorder stop];
 
     return peak;
-
 }
 
 void devices()
@@ -44,7 +43,6 @@ void devices()
 
     for (AVCaptureDevice *device in devices) {
 
-        // printf("%s", device.localizedName);
         NSLog(@"Device name: %@", [device localizedName]);
 
         if ([device hasMediaType:AVMediaTypeVideo]) {
@@ -59,9 +57,12 @@ void devices()
     }
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char const **argv)
 {
+#ifdef DEBUG
     devices();
+#endif
+
     float oldVolume = -1.0;
 
     while (true) {
@@ -70,6 +71,7 @@ int main(int argc, char const *argv[])
             printf("%f\n", getVolume());
         }
     }
+
     return 0;
 }
 
