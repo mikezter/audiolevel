@@ -64,6 +64,8 @@ sleepABit()
 int
 main(int argc, char const **argv)
 {
+    setbuf(stdout, NULL);
+
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
     AVAudioRecorder *recorder = getAudioRecorder();
