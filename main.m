@@ -16,7 +16,8 @@ float getVolume(AVAudioRecorder* recorder)
     return [recorder peakPowerForChannel:0];
 }
 
-AVAudioRecorder* getAudioRecorder() {
+AVAudioRecorder* getAudioRecorder()
+{
     NSURL *url = [NSURL fileURLWithPath:@"/tmp/audiolevel.temp"];
     NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSNumber numberWithFloat: 44100.0], AVSampleRateKey,
