@@ -39,7 +39,7 @@ AudioDeviceID getDefaultOutputDeviceID()
 
 float getVolume ()
 {
-    NSURL *url = [NSURL fileURLWithPath:@"/Users/mike/audiolevel.temp"];
+    NSURL *url = [NSURL fileURLWithPath:@"/tmp/audiolevel.temp"];
     NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSNumber numberWithFloat: 44100.0], AVSampleRateKey,
                               [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
