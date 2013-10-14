@@ -11,13 +11,15 @@
 #include <AVFoundation/AVFoundation.h>
 #include <sys/time.h>
 
-float getVolume(AVAudioRecorder* recorder)
+float
+getVolume(AVAudioRecorder* recorder)
 {
     [recorder updateMeters];
     return [recorder peakPowerForChannel:0];
 }
 
-long long int getMillisecondsSinceEpoch()
+long long int
+getMillisecondsSinceEpoch()
 {
     struct timeval res;
 
@@ -26,7 +28,8 @@ long long int getMillisecondsSinceEpoch()
     return res.tv_sec * 1000 + res.tv_usec / 1000;
 }
 
-AVAudioRecorder* getAudioRecorder()
+AVAudioRecorder*
+getAudioRecorder()
 {
     NSURL *url = [NSURL fileURLWithPath:@"/tmp/audiolevel.temp"];
     NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -47,7 +50,8 @@ AVAudioRecorder* getAudioRecorder()
     return recorder;
 }
 
-void listDevices()
+void
+listDevices()
 {
     NSArray *devices = [AVCaptureDevice devices];
 
@@ -67,7 +71,8 @@ void listDevices()
     }
 }
 
-int main(int argc, char const **argv)
+int
+main(int argc, char const **argv)
 {
 #ifdef DEBUG
     listDevices();
