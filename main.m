@@ -10,8 +10,13 @@
 #include <AudioToolbox/AudioServices.h>
 #include <AVFoundation/AVFoundation.h>
 
-float getVolume()
+float getVolume(AVAudioRecorder* recorder)
 {
+    [recorder updateMeters];
+    return [recorder peakPowerForChannel:0];
+}
+
+AVAudioRecorder* getAudioRecorder() {
     NSURL *url = [NSURL fileURLWithPath:@"/tmp/audiolevel.temp"];
     NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSNumber numberWithFloat: 44100.0], AVSampleRateKey,
@@ -27,14 +32,8 @@ float getVolume()
 
     [recorder setMeteringEnabled:YES];
     [recorder record];
-    [recorder updateMeters];
 
-    float avg = [recorder averagePowerForChannel:0];
-    float peak = [recorder peakPowerForChannel:0];
-
-    [recorder stop];
-
-    return peak;
+    return recorder;
 }
 
 void listDevices()
@@ -63,13 +62,10 @@ int main(int argc, char const **argv)
     listDevices();
 #endif
 
-    float oldVolume = -1.0;
+    AVAudioRecorder *recorder = getAudioRecorder();
 
     while (true) {
-        if (oldVolume != getVolume()) {
-            oldVolume = getVolume();
-            printf("%f\n", getVolume());
-        }
+        printf("%f\n", getVolume(recorder));
     }
 
     return 0;
