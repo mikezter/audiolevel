@@ -64,7 +64,7 @@ sleepABit()
     struct timespec duration;
 
     duration.tv_sec  = 0;
-    duration.tv_nsec = 100000000L;
+    duration.tv_nsec = 500000000L;
 
     nanosleep(&duration, NULL);
 }
