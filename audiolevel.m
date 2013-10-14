@@ -9,11 +9,21 @@
 #include <CoreServices/CoreServices.h>
 #include <AudioToolbox/AudioServices.h>
 #include <AVFoundation/AVFoundation.h>
+#include <sys/time.h>
 
 float getVolume(AVAudioRecorder* recorder)
 {
     [recorder updateMeters];
     return [recorder peakPowerForChannel:0];
+}
+
+long long int getMillisecondsSinceEpoch()
+{
+    struct timeval res;
+
+    gettimeofday(&res, NULL);
+
+    return res.tv_sec * 1000 + res.tv_usec / 1000;
 }
 
 AVAudioRecorder* getAudioRecorder()
@@ -66,7 +76,7 @@ int main(int argc, char const **argv)
     AVAudioRecorder *recorder = getAudioRecorder();
 
     while (true) {
-        printf("%f\n", getVolume(recorder));
+        printf("%lld %f\n", getMillisecondsSinceEpoch(), getVolume(recorder));
     }
 
     return 0;
