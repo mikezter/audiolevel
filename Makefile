@@ -10,7 +10,10 @@ audiolevel:
 list_devices:
 	$(CC) $(CFLAGS) $(FRAMEWORK) $@.m -o $@
 
-clean:
-	@rm -f audiolevel list_devices
+readme:
+	markdown2 README.md > readme.html && open readme.html
 
-.PHONY: clean audiolevel list_devices
+clean:
+	@rm -f audiolevel list_devices readme.html
+
+.PHONY: clean audiolevel list_devices readme
