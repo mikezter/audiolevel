@@ -37,7 +37,7 @@ float getVolume()
     return peak;
 }
 
-void devices()
+void listDevices()
 {
     NSArray *devices = [AVCaptureDevice devices];
 
@@ -60,7 +60,7 @@ void devices()
 int main(int argc, char const **argv)
 {
 #ifdef DEBUG
-    devices();
+    listDevices();
 #endif
 
     float oldVolume = -1.0;
