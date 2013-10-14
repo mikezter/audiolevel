@@ -10,33 +10,6 @@
 #include <AudioToolbox/AudioServices.h>
 #include <AVFoundation/AVFoundation.h>
 
-
-AudioDeviceID getDefaultOutputDeviceID()
-{
-    AudioDeviceID outputDeviceID = kAudioObjectUnknown;
-
-    // get output device device
-    OSStatus status = noErr;
-    AudioObjectPropertyAddress propertyAOPA;
-    propertyAOPA.mScope = kAudioObjectPropertyScopeGlobal;
-    propertyAOPA.mElement = kAudioObjectPropertyElementMaster;
-    propertyAOPA.mSelector = kAudioHardwarePropertyDefaultOutputDevice;
-
-    if (!AudioHardwareServiceHasProperty(kAudioObjectSystemObject, &propertyAOPA))
-    {
-        printf("Cannot find default output device!");
-        return outputDeviceID;
-    }
-
-    status = AudioHardwareServiceGetPropertyData(kAudioObjectSystemObject, &propertyAOPA, 0, NULL, (UInt32[]){sizeof(AudioDeviceID)}, &outputDeviceID);
-
-    if (status != 0)
-    {
-        printf("Cannot find default output device!");
-    }
-    return outputDeviceID;
-}
-
 float getVolume ()
 {
     NSURL *url = [NSURL fileURLWithPath:@"/tmp/audiolevel.temp"];
