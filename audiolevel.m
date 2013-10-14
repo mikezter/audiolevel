@@ -40,10 +40,9 @@ getAudioRecorder()
                               [NSNumber numberWithInt: AVAudioQualityMax], AVEncoderAudioQualityKey,
                               nil];
 
-    NSError *error;
     AVAudioRecorder *recorder;
 
-    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:NULL];
 
     [recorder setMeteringEnabled:YES];
     [recorder record];
