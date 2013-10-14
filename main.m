@@ -7,8 +7,8 @@
 //
 
 #include <CoreServices/CoreServices.h>
-#import <AudioToolbox/AudioServices.h>
-#import <AVFoundation/AVFoundation.h>
+#include <AudioToolbox/AudioServices.h>
+#include <AVFoundation/AVFoundation.h>
 
 
 AudioDeviceID getDefaultOutputDeviceID()
