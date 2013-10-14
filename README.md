@@ -7,6 +7,7 @@ platform.
 -----
 
 Max OS X 10.8
+Node.js
 
 usage.
 -----
@@ -14,6 +15,14 @@ usage.
     git clone mikezter/audiolevel
     make
     ./audiolevel
+
+charts.
+----
+
+    cd websocket
+    npm install socket.io
+    ../audiolevel | node websocketcat.js
+    open localhost:3000/index.html
 
 goal.
 ----

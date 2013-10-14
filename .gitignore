@@ -1,2 +1,3 @@
 audiolevel
 list_devices
+websocket/node_modules/*
