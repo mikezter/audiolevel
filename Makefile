@@ -1,7 +1,7 @@
 all:
-	clang -v -framework Foundation -framework AVFoundation -framework AudioToolbox main.m -o audiolevel
+	clang -framework Foundation -framework AVFoundation -framework AudioToolbox main.m -o audiolevel
 
 clean:
-	@rm audiolevel
+	@rm -f audiolevel
 
-.PHONY: clean
+.PHONY: clean all
