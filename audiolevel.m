@@ -16,7 +16,7 @@ float
 getVolume(AVAudioRecorder* recorder)
 {
     [recorder updateMeters];
-    return [recorder peakPowerForChannel:0];
+    return [recorder averagePowerForChannel:0];
 }
 
 long long int
