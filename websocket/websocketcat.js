@@ -20,8 +20,8 @@ function handler (req, res) {
   var filename = path.join(process.cwd(), uri);
   fs.readFile(filename, function (err,data) {
     if (err) {
-      res.writeHead(500);
-      return res.end('Error');
+      res.writeHead(301, {'Location': '/index.html'});
+      return res.end('redirecting...');
     }
     var mimeType = mimeTypes[path.extname(filename).split('.')[1]];
     res.writeHead(200, {'Content-Type':mimeType});
