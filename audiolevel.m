@@ -64,12 +64,16 @@ sleepABit()
 int
 main(int argc, char const **argv)
 {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
     AVAudioRecorder *recorder = getAudioRecorder();
 
     while (true) {
         printf("%lld %f\n", getMillisecondsSinceEpoch(), getVolume(recorder));
         sleepABit();
     }
+
+    [pool release];
 
     return 0;
 }
