@@ -29,11 +29,18 @@ function handler (req, res) {
   });
 }
 
+function parseLine(line) {
+  var data = line.trim().split(" ");
+  return {
+    time: parseInt(data[0], 10),
+     avg: parseFloat(data[1], 10),
+    peak: parseFloat(data[2], 10)
+  }
+
+}
+
 io.sockets.on('connection', function (socket) {
   process.stdin.on('data', function(chunk) {
-
-    data = chunk.toString().replace("\n", "").split(" ");
-    process.stdout.write('data: ' + data);
-    socket.emit('data', [parseInt(data[0], 10), parseFloat(data[1], 10)]);
+    socket.volatile.emit('data', parseLine(chunk));
   });
 });
