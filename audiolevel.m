@@ -62,7 +62,7 @@ sleepABit()
 }
 
 int
-main(int argc, char const **argv)
+main(void)
 {
     setbuf(stdout, NULL);
 
@@ -71,11 +71,15 @@ main(int argc, char const **argv)
     AVAudioRecorder *recorder = getAudioRecorder();
 
     while (true) {
-        printf("%lld %f\n", getMillisecondsSinceEpoch(), getVolume(recorder));
+        printf(
+            "%s;%lld;%f\n",
+            [[[NSHost currentHost] localizedName] UTF8String],
+            getMillisecondsSinceEpoch(),
+            getVolume(recorder)
+        );
+
         sleepABit();
     }
 
     [pool release];
-
-    return 0;
 }
