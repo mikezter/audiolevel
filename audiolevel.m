@@ -9,6 +9,7 @@
 #include <CoreServices/CoreServices.h>
 #include <AudioToolbox/AudioServices.h>
 #include <AVFoundation/AVFoundation.h>
+
 #include <sys/time.h>
 
 float
@@ -50,6 +51,17 @@ getAudioRecorder()
     return recorder;
 }
 
+void
+sleepABit()
+{
+    struct timespec duration;
+
+    duration.tv_sec  = 0;
+    duration.tv_nsec = 100000000L;
+
+    nanosleep(&duration, NULL);
+}
+
 int
 main(int argc, char const **argv)
 {
@@ -57,8 +69,8 @@ main(int argc, char const **argv)
 
     while (true) {
         printf("%lld %f\n", getMillisecondsSinceEpoch(), getVolume(recorder));
+        sleepABit();
     }
 
     return 0;
 }
-
