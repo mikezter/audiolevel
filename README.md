@@ -13,7 +13,7 @@ usage.
 
     git clone mikezter/audiolevel
     make
-    ./a.out
+    ./audiolevel
 
 goal.
 ----
