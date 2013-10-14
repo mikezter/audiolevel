@@ -12,11 +12,19 @@
 
 #include <sys/time.h>
 
-float
-getVolume(AVAudioRecorder* recorder)
+struct data {
+   float avg;
+   float peak;
+};
+
+struct data
+getData(AVAudioRecorder* recorder)
 {
     [recorder updateMeters];
-    return [recorder averagePowerForChannel:0];
+    struct data data;
+    data.avg =  [recorder averagePowerForChannel:0];
+    data.peak =  [recorder peakPowerForChannel:0];
+    return data;
 }
 
 long long int
@@ -71,7 +79,7 @@ main(int argc, char const **argv)
     AVAudioRecorder *recorder = getAudioRecorder();
 
     while (true) {
-        printf("%lld %f\n", getMillisecondsSinceEpoch(), getVolume(recorder));
+        printf("%lld %f %f\n", getMillisecondsSinceEpoch(), getData(recorder).avg, getData(recorder).peak);
         sleepABit();
     }
 
