@@ -29,3 +29,7 @@ goal.
 
 Use built in microphones of the computers in a shared office to create an audio profile.
 
+help.
+----
+http://www.animations.physics.unsw.edu.au/jw/dB.htm
+
