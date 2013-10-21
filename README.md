@@ -22,7 +22,7 @@ charts.
     cd websocket
     npm install socket.io
     ../audiolevel | node websocketcat.js
-    open localhost:3000/index.html
+    open http://localhost:3000/index.html
 
 goal.
 ----
