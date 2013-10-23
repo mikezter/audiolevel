@@ -5,7 +5,7 @@ var app = require('http').createServer(handler),
     url = require('url'),
     path = require('path');
 
-process.stdin.resume(); // needed if not using readline
+process.stdin.resume();
 process.stdin.setEncoding('ascii');
 app.listen(3000);
 
@@ -35,7 +35,7 @@ function parseLine(line) {
     time: parseInt(data[0], 10),
      avg: parseFloat(data[1], 10),
     peak: parseFloat(data[2], 10)
-  }
+  };
 
 }
 
