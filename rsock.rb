@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'socket'
 
 socket = UDPSocket.new.tap{|s| s.connect('overmind-a.kaeuferportal.eu', 6666) }
